@@ -24,7 +24,7 @@ jobs:
         run: curl https://files.pushshift.io/reddit/69M_reddit_accounts.csv.gz -o data/reddit_account_data.csv.gz
 
       - name: Unzip reddit_account_data.csv.gz
-        run: gzip -d reddit_account_data.csv.gz
+        run: gzip -d data/reddit_account_data.csv.gz
 
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
