@@ -1,0 +1,50 @@
+name: Python package
+
+on: [ push, workflow_dispatch ]
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
+env:
+  POETRY_VERSION: 1.3.1
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [ "3.7", "3.8", "3.9", "3.10", "3.11" ]
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Fetch Data File Crime_Data_from_2020_to_Present.csv
+        run: curl https://data.lacity.org/api/views/2nrs-mtv8/rows.csv?accessType=DOWNLOAD -o data/Crime_Data_from_2020_to_Present.csv
+
+      - name: Fetch Data File reddit_account_data.csv.gz
+        run: curl https://files.pushshift.io/reddit/69M_reddit_accounts.csv.gz -o data/reddit_account_data.csv.gz
+
+      - name: Unzip reddit_account_data.csv.gz
+        run: gzip -d reddit_account_data.csv.gz
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: update pip & setuptools
+        run: python -m pip install --upgrade pip setuptools
+
+      - name: Install poetry
+        run: pipx install poetry==$POETRY_VERSION
+
+      - name: Install dependencies
+        run: poetry install poetry install --without dev
+
+      - name: Test with pytest
+        run: poetry run pytest
+
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v3
+        with:
+          name: code-coverage-report
+          path: .benchmarks/*

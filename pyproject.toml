@@ -1,0 +1,40 @@
+[tool.poetry]
+name = "data-processing"
+version = "0.1.0"
+description = ""
+authors = ["Toby Devlin <toby@tobydevlin.com>"]
+readme = "README.md"
+packages = [{ include = "data_processing", from="src"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pandas = "^1.5.3"
+polars = "^0.16.2"
+pyarrow = "^11.0.0"
+
+
+[tool.poetry.group.dev.dependencies]
+matplotlib = "^3.6.3"
+jupyter = "^1.0.0"
+ipython-memory-magics = "^0.3.7"
+pytest = "^7.2.1"
+black = "^23.1.0"
+
+
+[tool.poetry.group.ci.dependencies]
+pytest-benchmark = "^4.0.0"
+pytest = "^7.2.1"
+
+[tool.black]
+line-length = 120
+
+[tool.pytest.ini_options]
+addopts = "-ra -v --benchmark-autosave --benchmark-save-data --benchmark-cprofile=tottime"
+testpaths = [
+    "test",
+]
+asyncio_mode = 'auto'
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

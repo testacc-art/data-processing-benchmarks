@@ -1,0 +1,7 @@
+.idea
+.venv
+!data/.keep
+.ipynb_checkpoints
+.pytest_cache
+*.pyc
+.benchmarks
