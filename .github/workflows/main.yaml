@@ -2,8 +2,8 @@ name: Data Benchmarking Tests
 
 on: [ push, workflow_dispatch ]
 concurrency:
-  group: ${{ github.workflow }}
-  cancel-in-progress: true
+  group: ${{ github.workflow }}-${{ github.run_id }}
+  cancel-in-progress: false
 
 env:
   POETRY_VERSION: 1.3.1
@@ -49,8 +49,8 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-#      - name: Test with pytest
-#        run: pytest
+      #      - name: Test with pytest
+      #        run: pytest
 
       - name: Archive code coverage results
         uses: actions/upload-artifact@v3
