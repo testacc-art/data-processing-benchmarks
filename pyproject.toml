@@ -28,7 +28,7 @@ pytest = "^7.2.1"
 line-length = 120
 
 [tool.pytest.ini_options]
-addopts = "-ra -v --benchmark-autosave --benchmark-save-data --benchmark-cprofile=tottime"
+addopts = "-ra -v"
 testpaths = ["test"]
 pythonpath = ["src"]
 

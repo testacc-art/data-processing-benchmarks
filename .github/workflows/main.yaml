@@ -51,10 +51,10 @@ jobs:
 
       # https://github.com/actions/setup-python/issues/350
       - name: Tests - polars
-        run: pytest -k test_polars
+        run: pytest -k test_polars #--benchmark-autosave --benchmark-save-data --benchmark-cprofile=tottime
 
       - name: Tests - pandas
-        run: pytest -k test_pandas
+        run: pytest -k test_pandas #--benchmark-autosave --benchmark-save-data --benchmark-cprofile=tottime
 
       - name: Archive performance coverage results
         uses: actions/upload-artifact@v3
