@@ -29,9 +29,9 @@ line-length = 120
 
 [tool.pytest.ini_options]
 addopts = "-ra -v --benchmark-autosave --benchmark-save-data --benchmark-cprofile=tottime"
-testpaths = [
-    "test",
-]
+testpaths = ["test"]
+pythonpath = ["src"]
+
 
 [build-system]
 requires = ["poetry-core"]
