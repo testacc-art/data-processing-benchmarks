@@ -49,6 +49,7 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      # https://github.com/actions/setup-python/issues/350
       - name: Tests - polars
         run: pytest -k test_polars
 
