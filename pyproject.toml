@@ -16,8 +16,8 @@ pyarrow = "^11.0.0"
 matplotlib = "^3.6.3"
 jupyter = "^1.0.0"
 ipython-memory-magics = "^0.3.7"
-pytest = "^7.2.1"
 black = "^23.1.0"
+pre-commit = "^3.0.4"
 
 
 [tool.poetry.group.ci.dependencies]
