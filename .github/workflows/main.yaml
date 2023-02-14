@@ -10,7 +10,7 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         python-version: [ "pypy3.8", "3.8", "pypy3.9", "3.9", "3.10", "3.11" ]
@@ -52,7 +52,6 @@ jobs:
       # https://github.com/actions/setup-python/issues/350
       - name: Run tests
         run: pytest  #--benchmark-autosave --benchmark-save-data --benchmark-cprofile=tottime
-
 
       - name: Archive performance coverage results
         uses: actions/upload-artifact@v3
