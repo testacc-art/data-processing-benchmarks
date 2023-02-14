@@ -50,11 +50,9 @@ jobs:
         run: pip install -r requirements.txt
 
       # https://github.com/actions/setup-python/issues/350
-      - name: Tests - polars
-        run: pytest -k test_polars #--benchmark-autosave --benchmark-save-data --benchmark-cprofile=tottime
+      - name: Run tests
+        run: pytest  #--benchmark-autosave --benchmark-save-data --benchmark-cprofile=tottime
 
-      - name: Tests - pandas
-        run: pytest -k test_pandas #--benchmark-autosave --benchmark-save-data --benchmark-cprofile=tottime
 
       - name: Archive performance coverage results
         uses: actions/upload-artifact@v3
