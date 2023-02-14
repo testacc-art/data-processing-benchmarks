@@ -28,4 +28,4 @@ repos:
       - id: poetry-check
       - id: poetry-lock
       - id: poetry-export
-        args: [ "-f", "requirements.txt", "--with", "ci", "-o", "requirements-ci.txt" ]
+        args: [ "-f", "requirements.txt", "--with", "ci", "-o", "requirements.txt" ]
