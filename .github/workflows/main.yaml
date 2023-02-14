@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
-        python-version: [ "pypy3.8", "3.8", "pypy3.9", "3.9", "3.10","3.11" ]
+        python-version: [ "pypy3.8", "3.8", "pypy3.9", "3.9", "3.10", "3.11" ]
 
     steps:
       - uses: actions/checkout@v3
@@ -49,8 +49,11 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Test with pytest
-        run: pytest
+      - name: Tests - polars
+        run: pytest -k test_polars
+
+      - name: Tests - pandas
+        run: pytest -k test_pandas
 
       - name: Archive performance coverage results
         uses: actions/upload-artifact@v3
