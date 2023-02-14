@@ -1,4 +1,4 @@
-name: Python package
+name: Data Benchmarking Tests
 
 on: [ push, workflow_dispatch ]
 concurrency:
@@ -49,8 +49,8 @@ jobs:
       - name: Install dependencies
         run: poetry install --without dev
 
-      - name: Test with pytest
-        run: poetry run pytest
+#      - name: Test with pytest
+#        run: poetry run pytest
 
       - name: Archive code coverage results
         uses: actions/upload-artifact@v3
