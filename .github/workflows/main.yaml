@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [ "3.7", "3.8", "3.9", "3.10", "3.11" ]
+        python-version: [ "3.7", "pypy3.8", "3.8", "pypy3.9, ""3.9", "3.10", "3.11" ]
     steps:
       - uses: actions/checkout@v3
 
@@ -23,6 +23,7 @@ jobs:
         with:
           path: data
           key: ${{ runner.os }}-${{ matrix.python-version }}-data
+
 
       - name: Fetch Data File Crime_Data_from_2020_to_Present.csv
         if: steps.cache-data.outputs.cache-hit != 'true'
@@ -40,6 +41,7 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
+          cache: 'poetry'
 
       - name: update pip & setuptools
         run: python -m pip install --upgrade pip setuptools
