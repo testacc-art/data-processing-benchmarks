@@ -32,7 +32,6 @@ addopts = "-ra -v --benchmark-autosave --benchmark-save-data --benchmark-cprofil
 testpaths = [
     "test",
 ]
-asyncio_mode = 'auto'
 
 [build-system]
 requires = ["poetry-core"]
