@@ -17,6 +17,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Cache Primes
+        uses: actions/cache@v3
+        with:
+          path: data
+          key: ${{ runner.os }}-${{ matrix.python-version }}-data
+
       - name: Fetch Data File Crime_Data_from_2020_to_Present.csv
         run: curl https://data.lacity.org/api/views/2nrs-mtv8/rows.csv?accessType=DOWNLOAD -o data/Crime_Data_from_2020_to_Present.csv
 
@@ -38,7 +44,7 @@ jobs:
         run: pipx install poetry==$POETRY_VERSION
 
       - name: Install dependencies
-        run: poetry install poetry install --without dev
+        run: poetry install --without dev
 
       - name: Test with pytest
         run: poetry run pytest
