@@ -4,7 +4,6 @@ version = "0.1.0"
 description = ""
 authors = ["Toby Devlin <toby@tobydevlin.com>"]
 readme = "README.md"
-packages = [{ include = "data_processing", from="src"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
