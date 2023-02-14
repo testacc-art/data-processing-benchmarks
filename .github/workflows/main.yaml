@@ -17,19 +17,23 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Cache Primes
+      - name: Cache Data
+        id: cache-data
         uses: actions/cache@v3
         with:
           path: data
           key: ${{ runner.os }}-${{ matrix.python-version }}-data
 
       - name: Fetch Data File Crime_Data_from_2020_to_Present.csv
+        if: steps.cache-data.outputs.cache-hit != 'true'
         run: curl https://data.lacity.org/api/views/2nrs-mtv8/rows.csv?accessType=DOWNLOAD -o data/Crime_Data_from_2020_to_Present.csv
 
       - name: Fetch Data File reddit_account_data.csv.gz
+        if: steps.cache-data.outputs.cache-hit != 'true'
         run: curl https://files.pushshift.io/reddit/69M_reddit_accounts.csv.gz -o data/reddit_account_data.csv.gz
 
       - name: Unzip reddit_account_data.csv.gz
+        if: steps.cache-data.outputs.cache-hit != 'true'
         run: gzip -d data/reddit_account_data.csv.gz
 
       - name: Set up Python ${{ matrix.python-version }}
