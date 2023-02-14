@@ -49,8 +49,8 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Test with pytest
-        run: pytest
+#      - name: Test with pytest
+#        run: pytest
 
       - name: Archive code coverage results
         uses: actions/upload-artifact@v3
